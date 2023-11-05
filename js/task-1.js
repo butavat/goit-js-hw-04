@@ -1,59 +1,29 @@
 'use strict';
 
-// ЗАДАЧА 7
-// НАПИШІТЬ ПРОГРАМУ, ЯКА ПРОВІРЯЄ ЛОГІН І ПАРОЛЬ, І ВИВОДИТЬ ПРИВІТАННЯ - ЯКЩО ВСЕ ДОБРЕ, АБО ВИДАЄ ПОМИЛКУ , ЩО НЕ ВІРНИЙ ЛОГІН
+function isEnoughCapacity(products, containerSize) {
+  let totalProducts = 0;
 
-// const login = prompt("Введіть ваш логін")
-// const parole = prompt("Введіть ваш пароль")
-
-// if (login === "butava" && parole === "Kotyk@2023") {
-// console.log ("Вітаємо у Нарнії")
-// } else {
-//     console.log ("Помилка: Невірний логін або пароль.")
-// }
-
-// ЗАДАЧА 8
-// НАПИШІТЬ ПРОГРАМУ , ЯКА БУДЕ ЗАПИТУВАТИ У КОРИСТУВАЧА ПЕРІОД ПІДПИСКИ НА СЕРВІС ТА ПОКАЗУВАТИМЕ ЦІНУ ПІДПИСКИ(ВИКОРИСТАЙ IF..ELSE, ТА ПЕРЕПИШИ НА SWITCH)
-// ЯКЩО ДЕНЬ - ціна 1.99
-// ЯУЩО НЕДІЛЯ - ціна 5.99
-// ЯКЩО МІСЯЦЬ - ціна 10.99
-// ЯКЩО РІК - ціна 100.99
-
-// const period = prompt("Введіть період підписки (ДЕНЬ, НЕДІЛЯ, МІСЯЦЬ або РІК):");
-// let price;
-
-// if (period.toUpperCase() === "ДЕНЬ") {
-//     price = 1.99;
-// } else if (period.toUpperCase() === "НЕДІЛЯ") {
-//     price = 5.99;
-// } else if (period.toUpperCase() === "МІСЯЦЬ") {
-//     price = 10.99;
-// } else if (period.toUpperCase() === "РІК") {
-//     price = 100.99;
-// } else {
-//     price = "Невідомий період";
-//   }
-
-//   console.log("Ціна підписки:", price);
-
-const period = prompt("Введіть період підписки (ДЕНЬ, НЕДІЛЯ, МІСЯЦЬ або РІК):");
-let price;
-
-switch (period.toUpperCase()) {
-    case "ДЕНЬ":
-        price = 1.99;
-        break;
-        case "НЕДІЛЯ":
-            price = 5.99;
-            break;
-            case "МІСЯЦЬ":
-                price = 10.99;
-            break;
-            case "РІК":
-                price = 100.99;
-            break;
-    default:
-        price = "Невідомий період";
+  for (const product in products) {
+    if (products.hasOwnProperty(product)) {
+      totalProducts += products [product];
+    }
+  }
+  return totalProducts <= containerSize;
 }
 
-console.log("Ціна підписки:", price);
+
+console.log(
+  isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
+); // false
+
+console.log(
+  isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7)
+); // false
